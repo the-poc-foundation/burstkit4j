@@ -11,7 +11,6 @@ import org.bouncycastle.util.encoders.Hex;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class Block {
     private final BigInteger nonce;
@@ -68,7 +67,7 @@ public class Block {
                 .map(BurstID::fromLong)
                 .toArray(BurstID[]::new);
         this.timestamp = new BurstTimestamp(blockResponse.getTimestamp());
-        this.blockReward = BurstValue.fromBurst(blockResponse.getBlockReward());
+        this.blockReward = BurstValue.fromBurst(blockResponse.getBlockReward()).multiply(blockResponse.getRatio()).divide(100);
         this.totalAmount = BurstValue.fromPlanck(blockResponse.getTotalAmountNQT());
         this.totalFee = BurstValue.fromPlanck(blockResponse.getTotalFeeNQT());
         this.generationSignature = Hex.decode(blockResponse.getGenerationSignature());

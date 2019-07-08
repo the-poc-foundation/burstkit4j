@@ -23,6 +23,7 @@ public final class BlockResponse extends BRSResponse {
     private final String block;
     private final int height;
     private final int timestamp;
+    private final int ratio;
 
     public BlockResponse(String errorDescription, Integer errorCode, Integer requestProcessingTime, String previousBlockHash, int payloadLength, String totalAmountNQT, String generationSignature, String generator, String generatorPublicKey, long baseTarget, String payloadHash, String blockReward, String nextBlock, int scoopNum, int numberOfTransactions, String blockSignature, String[] transactions, String nonce, int version, String totalFeeNQT, String previousBlock, String block, int height, int timestamp) {
         super(errorDescription, errorCode, requestProcessingTime);
@@ -47,6 +48,7 @@ public final class BlockResponse extends BRSResponse {
         this.block = block;
         this.height = height;
         this.timestamp = timestamp;
+        this.ratio = 20;
     }
 
     public String getPreviousBlockHash() {
@@ -131,5 +133,9 @@ public final class BlockResponse extends BRSResponse {
 
     public int getTimestamp() {
         return timestamp;
+    }
+
+    public int getRatio() {
+        return ratio;
     }
 }
